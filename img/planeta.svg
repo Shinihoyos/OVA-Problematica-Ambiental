@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="t"><title id="t">Planeta Tierra</title>
+<defs><clipPath id="g"><circle cx="200" cy="200" r="160"/></clipPath></defs>
+<circle cx="200" cy="200" r="160" fill="#247A91"/>
+<g clip-path="url(#g)">
+<path d="M120 90C150 70 190 85 195 115C200 140 175 150 170 175C165 200 185 215 175 245C165 275 140 290 130 265C120 240 130 215 110 190C90 165 95 110 120 90Z" fill="#65A66F"/>
+<path d="M250 100C280 90 320 110 325 145C330 180 300 195 295 225C290 260 265 275 255 245C245 215 265 190 245 165C230 140 230 110 250 100Z" fill="#65A66F"/>
+<path d="M215 300C235 292 260 300 255 318C250 335 215 335 210 318Z" fill="#65A66F"/>
+<path d="M135 110C150 100 172 108 176 124C160 126 150 140 140 150C128 140 124 122 135 110Z" fill="#174D3A" opacity=".55"/>
+<path d="M262 118C282 114 304 126 308 146C290 146 276 156 268 170C256 156 252 128 262 118Z" fill="#174D3A" opacity=".55"/>
+<ellipse cx="200" cy="52" rx="90" ry="22" fill="#DCE9D5"/>
+<ellipse cx="200" cy="352" rx="80" ry="20" fill="#DCE9D5"/>
+<ellipse cx="150" cy="215" rx="42" ry="9" fill="#DCE9D5" opacity=".75"/>
+<ellipse cx="270" cy="285" rx="46" ry="9" fill="#DCE9D5" opacity=".75"/>
+<ellipse cx="236" cy="78" rx="34" ry="7" fill="#F2E8D5" opacity=".8"/>
+</g>
+<circle cx="200" cy="200" r="160" fill="none" stroke="#174D3A" stroke-width="6"/>
+</svg>
