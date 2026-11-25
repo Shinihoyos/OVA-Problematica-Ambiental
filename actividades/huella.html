@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La huella de mi entorno</title>
+  <meta name="description" content="Actividad interactiva para estudiantes de décimo grado: estima el impacto ambiental de tu ciudad, municipio o comunidad.">
+  <!-- Si el proyecto ya tiene una hoja de estilos global (variables, tipografías, botones), enlázala aquí ANTES de esta línea. -->
+  <link rel="stylesheet" href="../css/huella.css">
+  <link rel="stylesheet" href="../css/navegacion.css">
+</head>
+<body>
+
+<nav class="ova-nav" aria-label="Navegación principal">
+  <a class="ova-nav__brand" href="../index.html">OVA Ambiental</a>
+  <div class="ova-nav__links">
+    <a href="../index.html">Inicio</a>
+    <a href="../unidad.html">Contenido</a>
+    <a href="../actividades/flashcards.html">Flashcards</a>
+    <a href="../actividades/sopa.html">Sopa de letras</a>
+    <a href="../actividades/arrastrar.html">Clasificación</a>
+    <a href="../actividades/huella.html">Huella ambiental</a>
+    <a href="../creditos.html">Créditos</a>
+  </div>
+</nav>
+
+
+  <!-- Iconografía: círculo oscuro con glifo claro, igual que las tarjetas «Lo que vas a explorar» -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-bus" viewBox="0 0 48 48">
+      <rect x="10" y="8" width="28" height="27" rx="6" fill="currentColor"/>
+      <rect x="14" y="13" width="20" height="10" rx="2.5" fill="var(--icon-cut)"/>
+      <rect x="14" y="27" width="5" height="3" rx="1.5" fill="var(--icon-cut)"/>
+      <rect x="29" y="27" width="5" height="3" rx="1.5" fill="var(--icon-cut)"/>
+      <rect x="13" y="35" width="6" height="6" rx="2" fill="var(--icon-accent)"/>
+      <rect x="29" y="35" width="6" height="6" rx="2" fill="var(--icon-accent)"/>
+    </symbol>
+    <symbol id="i-bin" viewBox="0 0 48 48">
+      <rect x="10" y="12" width="28" height="5" rx="2.5" fill="currentColor"/>
+      <rect x="18" y="8" width="12" height="5" rx="2" fill="var(--icon-accent)"/>
+      <path d="M13 19h22l-1.9 19.200a3.200 3.200 0 0 1-3.200 2.800H18.100a3.200 3.200 0 0 1-3.200-2.800z" fill="currentColor"/>
+      <rect x="20.500" y="23" width="2.600" height="13" rx="1.300" fill="var(--icon-cut)"/>
+      <rect x="26" y="23" width="2.600" height="13" rx="1.300" fill="var(--icon-cut)"/>
+    </symbol>
+    <symbol id="i-drop" viewBox="0 0 48 48">
+      <path d="M24 7c6.500 8.500 12 14 12 21a12 12 0 0 1-24 0c0-7 5.500-12.500 12-21z" fill="currentColor"/>
+      <path d="M17 29c2.200-2.200 4.500-2.200 7 0s4.800 2.200 7 0" fill="none" stroke="var(--icon-cut)" stroke-width="2.600" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 48 48">
+      <path d="M28 5 12 27h10l-3 16 17-23H26z" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 48 48">
+      <path d="M9 37C9 20 20 9 39 9c0 19-10 30-26 30z" fill="var(--icon-accent)"/>
+      <path d="M13 36 31 18" fill="none" stroke="var(--icon-cut)" stroke-width="2.600" stroke-linecap="round"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 48 48">
+      <circle cx="24" cy="24" r="15" fill="none" stroke="currentColor" stroke-width="3.400"/>
+      <rect x="22.300" y="21" width="3.400" height="11" rx="1.700" fill="currentColor"/>
+      <circle cx="24" cy="16" r="2.200" fill="currentColor"/>
+    </symbol>
+    <symbol id="i-pencil" viewBox="0 0 48 48">
+      <path d="M11 37l2.500-9.500L31 10l7 7-17.500 17.500z" fill="currentColor"/>
+      <path d="M28 13l7 7" stroke="var(--icon-cut)" stroke-width="2.600" stroke-linecap="round"/>
+      <path d="M10 40l3.500-1" stroke="var(--icon-accent)" stroke-width="3" stroke-linecap="round"/>
+    </symbol>
+  </svg>
+
+  <main>
+
+    <!-- ============ 1. INTRODUCCIÓN ============ -->
+    <section class="hero" id="screen-intro" aria-labelledby="intro-title">
+      <div class="hero__text">
+        <h1 id="intro-title" tabindex="-1" data-focus>La huella de mi entorno</h1>
+        <p class="hero__lead">Descubre cuánto pesa el impacto ambiental del lugar donde vives.</p>
+        <p class="hero__body">Responde 15 preguntas breves sobre transporte, residuos, agua, energía y zonas verdes de tu ciudad, municipio o comunidad. Obtendrás un índice aproximado, un gráfico y recomendaciones para actuar desde Colombia.</p>
+
+        <form class="hero__form" id="start-form" novalidate>
+          <label class="field__label" for="entorno">¿Cómo se llama tu ciudad, municipio o comunidad?</label>
+          <input class="field" id="entorno" name="entorno" type="text" maxlength="60" autocomplete="off" placeholder="Escribe el nombre de tu entorno" aria-describedby="entorno-error">
+          <p class="field__error" id="entorno-error" role="alert" hidden></p>
+          <button class="btn" type="submit">Comenzar actividad</button>
+        </form>
+
+        <p class="hero__note">Todo se calcula en tu dispositivo. No se usa tu ubicación ni se envían datos a ningún servicio.</p>
+      </div>
+
+      <div class="hero__art" aria-hidden="true">
+        <div class="orbit">
+          <div class="orbit__ring"></div>
+          <svg class="orbit__earth" viewBox="0 0 400 400" focusable="false">
+            <defs><clipPath id="earth-clip"><circle cx="200" cy="200" r="186"/></clipPath></defs>
+            <circle cx="200" cy="200" r="190" fill="#237A94" stroke="#1B4D3A" stroke-width="12"/>
+            <g clip-path="url(#earth-clip)">
+              <path d="M95 95C110 62 165 58 182 88C196 112 180 136 166 150C176 182 174 214 160 246C150 272 128 292 112 282C92 268 100 228 94 196C88 160 80 126 95 95Z" fill="#66A86C"/>
+              <path d="M118 100C132 88 158 88 170 102C160 118 140 128 126 134C116 124 112 110 118 100Z" fill="#3E7852"/>
+              <path d="M246 100C264 72 312 70 328 98C340 122 330 150 322 168C330 208 322 246 306 270C294 290 272 292 266 270C260 240 266 204 252 170C240 144 232 122 246 100Z" fill="#66A86C"/>
+              <path d="M262 112C280 96 306 98 318 112C306 124 288 134 272 142C264 134 258 122 262 112Z" fill="#3E7852"/>
+              <path d="M236 300C250 288 276 290 282 306C284 322 262 330 246 324C232 318 228 308 236 300Z" fill="#66A86C"/>
+              <ellipse cx="200" cy="22" rx="78" ry="22" fill="#DDE8D4"/>
+              <ellipse cx="200" cy="382" rx="78" ry="22" fill="#DDE8D4"/>
+              <ellipse cx="288" cy="50" rx="40" ry="7" fill="#B7D3CD" opacity=".85"/>
+              <ellipse cx="140" cy="222" rx="52" ry="9" fill="#B7D3CD" opacity=".85"/>
+              <ellipse cx="318" cy="268" rx="62" ry="10" fill="#B7D3CD" opacity=".85"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 2. CUESTIONARIO ============ -->
+    <section class="explore" id="screen-quiz" aria-labelledby="quiz-title" hidden>
+      <div class="wrap">
+        <p class="eyebrow">Entorno: <strong id="quiz-env"></strong></p>
+        <h2 class="section-title" id="quiz-title" tabindex="-1" data-focus>Lo que vas a analizar</h2>
+
+        <ol class="steps" id="steps" aria-label="Categorías del cuestionario"></ol>
+
+        <div class="progress" id="progress" role="progressbar" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1" aria-label="Avance del cuestionario">
+          <span class="progress__bar" id="progress-bar"></span>
+        </div>
+
+        <article class="card question" id="question-card" aria-live="polite"></article>
+      </div>
+    </section>
+
+    <!-- ============ 3. RESULTADOS ============ -->
+    <section class="explore" id="screen-results" aria-labelledby="results-title" hidden>
+      <div class="wrap">
+        <h2 class="section-title" id="results-title" tabindex="-1" data-focus>Resultados de <span id="res-env"></span></h2>
+
+        <div class="grid grid--summary">
+          <article class="card card--overall" aria-labelledby="overall-title">
+            <h3 class="card__title" id="overall-title">Resultado general</h3>
+            <p class="overall__score"><span id="overall-score">0</span><small>/100</small></p>
+            <p><span class="pill" id="overall-pill" data-level="bajo">Impacto bajo</span></p>
+            <div class="scale" aria-hidden="true">
+              <span class="scale__seg" data-level="bajo"></span>
+              <span class="scale__seg" data-level="moderado"></span>
+              <span class="scale__seg" data-level="alto"></span>
+              <span class="scale__marker" id="scale-marker"></span>
+            </div>
+            <p class="scale__legend" aria-hidden="true"><span>Bajo</span><span>Moderado</span><span>Alto</span></p>
+            <p class="card__text" id="overall-text"></p>
+          </article>
+
+          <article class="card card--chart" aria-labelledby="chart-title">
+            <h3 class="card__title" id="chart-title">¿Dónde pesa más tu impacto?</h3>
+            <p class="card__text card__text--small">Una barra más larga significa mayor impacto. Las líneas punteadas separan los niveles bajo, moderado y alto.</p>
+            <div class="chart" id="chart"></div>
+            <p class="chart__summary" id="chart-summary"></p>
+          </article>
+        </div>
+
+        <h2 class="section-title section-title--spaced">Puntuación por categoría</h2>
+        <div class="grid grid--3" id="category-cards"></div>
+
+        <h2 class="section-title section-title--spaced">Recomendaciones para tu entorno</h2>
+        <div class="grid grid--3" id="recs"></div>
+
+        <h2 class="section-title section-title--spaced">Reflexión</h2>
+        <article class="card card--reflection">
+          <form id="reflection-form" novalidate>
+            <label class="reflection__question" for="reflection">¿Qué cambio consideras más necesario para reducir el impacto ambiental de tu entorno?</label>
+            <p class="card__text card__text--small">Escribe con tus propias palabras. Puedes apoyarte en tus resultados y en las recomendaciones.</p>
+            <textarea class="field field--area" id="reflection" name="reflection" rows="5" maxlength="600" placeholder="Escribe tu respuesta aquí" aria-describedby="reflection-count reflection-error"></textarea>
+            <p class="field__meta"><span id="reflection-count">0 / 600</span></p>
+            <p class="field__error" id="reflection-error" role="alert" hidden></p>
+            <button class="btn" type="submit" id="reflection-save">Guardar reflexión</button>
+          </form>
+        </article>
+
+        <article class="card card--summary" id="summary" aria-labelledby="summary-title" hidden>
+          <span class="icon"><svg viewBox="0 0 48 48" aria-hidden="true"><use href="#i-pencil"/></svg></span>
+          <h3 class="card__title" id="summary-title" tabindex="-1">Resumen de tu actividad</h3>
+          <dl class="summary__list" id="summary-list"></dl>
+          <blockquote class="summary__quote" id="summary-quote"></blockquote>
+        </article>
+
+        <div class="actions">
+          <button class="btn btn--ghost" type="button" id="btn-print">Imprimir o guardar en PDF</button>
+          <button class="btn btn--ghost" type="button" id="btn-restart">Volver a empezar</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>La huella de mi entorno · Actividad educativa para décimo grado</p>
+  </footer>
+
+  <script src="../js/huella.js"></script>
+</body>
+</html>

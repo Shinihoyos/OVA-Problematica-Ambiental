@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards: contaminación ambiental · Problemáticas ambientales en el mundo</title>
+  <link rel="stylesheet" href="../css/flashcards.css">
+  <link rel="stylesheet" href="../css/navegacion.css">
+</head>
+<body>
+
+<nav class="ova-nav" aria-label="Navegación principal">
+  <a class="ova-nav__brand" href="../index.html">OVA Ambiental</a>
+  <div class="ova-nav__links">
+    <a href="../index.html">Inicio</a>
+    <a href="../unidad.html">Contenido</a>
+    <a href="../actividades/flashcards.html">Flashcards</a>
+    <a href="../actividades/sopa.html">Sopa de letras</a>
+    <a href="../actividades/arrastrar.html">Clasificación</a>
+    <a href="../actividades/huella.html">Huella ambiental</a>
+    <a href="../creditos.html">Créditos</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== PANTALLA INICIAL ===================== -->
+  <section class="hero" data-screen="intro">
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="display">Analiza la contaminación que afecta al planeta</h1>
+        <h2 class="subtitle">Cada tarjeta es una situación real que invita a pensar.</h2>
+        <p class="lead">Voltea 12 tarjetas para conocer conceptos de contaminación ambiental, entender cómo afectan al mundo y escribir tus propias conclusiones sobre cómo enfrentarlos desde Colombia.</p>
+        <div class="btn-row">
+          <button class="btn" type="button" data-action="start">Comenzar a estudiar</button>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="stage">
+          <div class="stage__disc"></div>
+          <div class="stage__ring"></div>
+          <div class="stage__globe">
+            <span class="cloud cloud--a"></span>
+            <span class="cloud cloud--b"></span>
+            <svg class="deck-art" viewBox="0 0 220 200">
+              <rect x="36" y="34" width="140" height="110" rx="20" fill="#929F76" transform="rotate(-9 106 89)"/>
+              <rect x="44" y="30" width="140" height="110" rx="20" fill="#BBC4A6" transform="rotate(5 114 85)"/>
+              <rect x="38" y="40" width="144" height="116" rx="22" fill="#DFE4CD" stroke="#2C3822" stroke-width="3"/>
+              <circle cx="72" cy="76" r="18" fill="#2C3822"/>
+              <path d="M62 80a6 6 0 0 1 1-12 8 8 0 0 1 15-1 6 6 0 0 1 2 13z" fill="#BBC4A6"/>
+              <rect x="98" y="66" width="62" height="9" rx="4.5" fill="#2C3822"/>
+              <rect x="98" y="83" width="42" height="7" rx="3.5" fill="#929F76"/>
+              <rect x="56" y="112" width="104" height="7" rx="3.5" fill="#BBC4A6"/>
+              <rect x="56" y="126" width="76" height="7" rx="3.5" fill="#BBC4A6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sage section" data-screen="intro">
+    <div class="wrap">
+      <h2 class="title section__head">Lo que vas a explorar</h2>
+      <div class="grid-3" id="introCats"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PANTALLA DE ESTUDIO ===================== -->
+  <section class="sage game" data-screen="study" hidden>
+    <div class="wrap">
+
+      <div class="topbar">
+        <div class="topbar__count">Dominadas: <b id="count">0/12</b></div>
+        <div class="progress" role="progressbar" aria-label="Tarjetas dominadas" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressbar">
+          <div class="progress__track"><div class="progress__fill" id="fill"></div></div>
+          <span class="progress__pct" id="pct">0%</span>
+        </div>
+        <div class="topbar__tools">
+          <span class="pill pill--soft">Tarjeta <b id="pos">1 de 12</b></span>
+        </div>
+      </div>
+
+      <div class="study">
+        <div class="study__main">
+          <div class="filters" id="filters" role="group" aria-label="Filtrar tarjetas"></div>
+
+          <div class="flip" id="flip" tabindex="0" role="button" aria-pressed="false">
+            <div class="flip__inner">
+              <div class="face face--front">
+                <div class="face__top">
+                  <span class="tag" id="fCat"></span>
+                  <span class="face__num" id="fNum"></span>
+                </div>
+                <div class="face__center">
+                  <div class="icon-dot" id="fIcon"></div>
+                  <h2 class="term" id="fTerm"></h2>
+                </div>
+                <p class="face__hint">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M18 3v4h-4M6 21v-4h4" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Toca la tarjeta para ver la definición
+                </p>
+              </div>
+              <div class="face face--back">
+                <h3 class="back__term" id="bTerm"></h3>
+                <div class="back__block">
+                  <h4>Definición</h4>
+                  <p id="bDef"></p>
+                </div>
+                <div class="back__block">
+                  <h4>Situación en el mundo</h4>
+                  <p id="bSit"></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button class="btn--outline" type="button" id="prev" aria-label="Tarjeta anterior">← Anterior</button>
+            <button class="btn btn--small" type="button" id="flipBtn">Voltear tarjeta</button>
+            <button class="btn--outline" type="button" id="next" aria-label="Tarjeta siguiente">Siguiente →</button>
+          </div>
+          <p class="keys">Atajos: ← → para cambiar de tarjeta · Espacio para voltear</p>
+
+          <div class="analysis is-locked" id="analysis">
+            <h3>Para analizar</h3>
+            <p class="analysis__q" id="aQ">Voltea la tarjeta para ver la pregunta de análisis.</p>
+            <label class="sr-only" for="note">Tu conclusión</label>
+            <textarea id="note" rows="3" placeholder="Escribe aquí tu conclusión (opcional)" disabled></textarea>
+            <div class="analysis__btns">
+              <button class="btn btn--small" type="button" id="mastered" disabled>La domino</button>
+              <button class="btn btn--small btn--ghost" type="button" id="review" disabled>Repasar después</button>
+            </div>
+          </div>
+        </div>
+
+        <aside class="deckpanel" aria-labelledby="deckTitle">
+          <div class="deckpanel__head">
+            <h2 id="deckTitle">Tu mazo</h2>
+            <span id="deckCount">0 de 12</span>
+          </div>
+          <div class="tiles" id="tiles"></div>
+          <ul class="legend" aria-hidden="true">
+            <li><i class="dot dot--new"></i>Sin ver</li>
+            <li><i class="dot dot--review"></i>Por repasar</li>
+            <li><i class="dot dot--ok"></i>Dominada</li>
+          </ul>
+          <div class="deckpanel__btns">
+            <button class="btn--outline" type="button" id="shuffle">Mezclar</button>
+            <button class="btn btn--small" type="button" data-action="summary">Ver resumen</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESUMEN ===================== -->
+  <section class="hero" data-screen="summary" hidden>
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="display" id="sTitle">¡Buen repaso!</h1>
+        <h2 class="subtitle" id="sSub"></h2>
+        <p class="lead" id="sText"></p>
+        <div class="btn-row">
+          <button class="btn" type="button" data-action="again">Estudiar de nuevo</button>
+          <button class="btn btn--ghost" type="button" id="pendingBtn" data-action="pending">Repasar pendientes</button>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="stage">
+          <div class="stage__disc"></div>
+          <div class="stage__ring"></div>
+          <div class="stage__globe">
+            <span class="cloud cloud--a"></span>
+            <span class="cloud cloud--b"></span>
+            <div class="globe-score">
+              <div class="score-num" id="sScore">0/12</div>
+              <div class="score-label">tarjetas dominadas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sage section" data-screen="summary" hidden>
+    <div class="wrap">
+      <h2 class="title section__head">Tu avance por tema</h2>
+      <div class="grid-3" id="sCats" style="margin-bottom:clamp(40px,5vw,72px)"></div>
+      <h2 class="title section__head">Tus conclusiones</h2>
+      <div class="grid-3" id="sNotes"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <b>Problemáticas ambientales en el mundo</b>
+    <span>Otras actividades: <a href="../index.html">Clasifica los residuos</a> · <a href="sopa.html">Conceptos ambientales</a></span>
+  </div>
+</footer>
+
+<script src="../js/flashcards.js"></script>
+</body>
+</html>

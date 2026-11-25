@@ -1,0 +1,18 @@
+OVA AMBIENTAL - PROYECTO INTEGRADO
+
+Inicio: abre index.html desde un navegador o publica toda esta carpeta en un hosting estático.
+
+Estructura:
+- index.html: portada e introducción.
+- creditos.html: créditos del equipo, foto del grupo e información institucional.
+- unidad.html: contenido de aprendizaje, video, lecturas, reflexión y acceso a actividades.
+- actividades/: cuatro actividades interactivas.
+- css/: todas las hojas de estilo.
+- js/: scripts de las actividades.
+- img/: imágenes e iconografía compartidas.
+
+Navegación:
+La barra superior está disponible en todas las páginas. Desde la unidad se puede acceder a las cuatro actividades y volver al contenido o al inicio.
+
+Nota:
+El video educativo requiere conexión a Internet. Las fuentes tipográficas externas también pueden usar conexión; se mantienen fuentes de respaldo para navegación sin conexión.

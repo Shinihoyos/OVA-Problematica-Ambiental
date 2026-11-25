@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Descubre los conceptos ambientales · Problemáticas ambientales en el mundo</title>
+  <link rel="stylesheet" href="../css/sopa.css">
+  <link rel="stylesheet" href="../css/navegacion.css">
+</head>
+<body>
+
+<nav class="ova-nav" aria-label="Navegación principal">
+  <a class="ova-nav__brand" href="../index.html">OVA Ambiental</a>
+  <div class="ova-nav__links">
+    <a href="../index.html">Inicio</a>
+    <a href="../unidad.html">Contenido</a>
+    <a href="../actividades/flashcards.html">Flashcards</a>
+    <a href="../actividades/sopa.html">Sopa de letras</a>
+    <a href="../actividades/arrastrar.html">Clasificación</a>
+    <a href="../actividades/huella.html">Huella ambiental</a>
+    <a href="../creditos.html">Créditos</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== PANTALLA INICIAL ===================== -->
+  <section class="hero" data-screen="intro">
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="display">Descubre los conceptos ambientales</h1>
+        <h2 class="subtitle">Cada palabra es una pieza importante para comprender lo que sucede en nuestro planeta.</h2>
+        <p class="lead">Lee las definiciones, identifica el concepto que representan y encuéntralo en la sopa de letras. Pon a prueba tus conocimientos sobre las problemáticas ambientales.</p>
+        <div class="btn-row">
+          <button class="btn" type="button" data-action="start">Comenzar actividad</button>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="stage">
+          <div class="stage__disc"></div>
+          <div class="stage__ring"></div>
+          <div class="stage__globe">
+            <span class="cloud cloud--a"></span>
+            <span class="cloud cloud--b"></span>
+            <div class="mini-letters">
+              <span class="on">B</span><span class="on">I</span><span class="on">O</span><span class="on">M</span><span class="on">A</span>
+              <span>E</span><span>C</span><span>O</span><span>L</span><span>S</span>
+              <span>R</span><span>O</span><span>S</span><span>I</span><span>E</span>
+              <span>S</span><span>U</span><span>E</span><span>L</span><span>O</span>
+              <span>N</span><span>A</span><span>T</span><span>U</span><span>R</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sage section" data-screen="intro">
+    <div class="wrap">
+      <h2 class="title section__head">Cómo funciona la actividad</h2>
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon-dot">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M10 8h22l8 8v24H10z" stroke="#BBC4A6" stroke-width="3.5" stroke-linejoin="round"/><path d="M17 22h14M17 29h14M17 36h8" stroke="#F1F2E6" stroke-width="3.5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="card-title">Lee</h3>
+          <p>Cada pista es una definición. Piensa qué concepto ambiental describe, sin que nadie te lo diga.</p>
+        </article>
+        <article class="card">
+          <div class="icon-dot">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><circle cx="21" cy="21" r="11" stroke="#F1F2E6" stroke-width="4"/><path d="M29.5 29.5L41 41" stroke="#BBC4A6" stroke-width="5" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="card-title">Busca</h3>
+          <p>Localiza la palabra en la cuadrícula de 16 × 16. Puede estar en horizontal, vertical, diagonal y hasta al revés.</p>
+        </article>
+        <article class="card">
+          <div class="icon-dot">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M10 38C8 22 18 10 38 8c1 20-9 30-24 31" fill="#BBC4A6"/><path d="M12 36L30 18" stroke="#2C3822" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="card-title">Marca</h3>
+          <p>Arrastra con el mouse o con el dedo sobre las letras. Si acertaste, el concepto queda resuelto.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PANTALLA DE JUEGO ===================== -->
+  <section class="sage game" data-screen="game" hidden>
+    <div class="wrap">
+
+      <div class="topbar">
+        <div class="topbar__count">Conceptos encontrados: <b id="count">0/12</b></div>
+        <div class="progress" role="progressbar" aria-label="Progreso de la actividad" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progressbar">
+          <div class="progress__track"><div class="progress__fill" id="fill"></div></div>
+          <span class="progress__pct" id="pct">0%</span>
+        </div>
+        <div class="topbar__tools">
+          <span class="pill pill--time">Tiempo <b id="time">00:00</b></span>
+          <button class="btn--outline" type="button" id="howtoBtn" aria-expanded="false" aria-controls="howto">Instrucciones</button>
+        </div>
+      </div>
+
+      <div class="howto" id="howto" hidden>
+        <h3>Cómo se juega</h3>
+        <ol>
+          <li><span>Lee una pista del panel «Pistas ambientales» y deduce qué concepto describe.</span></li>
+          <li><span>Mantén presionado sobre la primera letra y arrastra hasta la última. Funciona en horizontal, vertical y diagonal, y en ambos sentidos.</span></li>
+          <li><span>Suelta para comprobar. Si es correcta queda en verde; si no, las letras vuelven a su estado y puedes intentarlo de nuevo.</span></li>
+        </ol>
+      </div>
+
+      <div class="play">
+        <div>
+          <div class="board">
+            <div class="letters" id="letters" role="application" aria-label="Sopa de letras de 16 por 16. Arrastra sobre las letras para seleccionar una palabra."></div>
+          </div>
+          <div class="feedback board-feedback" id="feedback" role="status" aria-live="polite">
+            <div class="feedback__icon" id="fbIcon"></div>
+            <div>
+              <h3 class="feedback__title" id="fbTitle"></h3>
+              <p class="feedback__text" id="fbText"></p>
+            </div>
+          </div>
+        </div>
+
+        <aside class="clues" aria-labelledby="cluesTitle">
+          <div class="clues__head">
+            <h2 id="cluesTitle">Pistas ambientales</h2>
+            <span id="cluesCount">0 de 12</span>
+          </div>
+          <ol class="clues__list" id="clues"></ol>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PANTALLA FINAL ===================== -->
+  <section class="hero" data-screen="final" hidden>
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="display">¡Reto completado!</h1>
+        <h2 class="subtitle" id="finalSub"></h2>
+        <p class="lead" id="finalText"></p>
+        <div class="btn-row">
+          <button class="btn" type="button" data-action="retry">Volver a intentar</button>
+          <button class="btn btn--ghost" type="button" data-action="review">Repasar conceptos</button>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="stage">
+          <div class="stage__disc"></div>
+          <div class="stage__ring"></div>
+          <div class="stage__globe">
+            <svg class="scene" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice">
+              <rect width="200" height="200" fill="#F1F2E6"/>
+              <circle cx="146" cy="58" r="20" fill="#BBC4A6"/>
+              <ellipse cx="52" cy="46" rx="26" ry="6" fill="#BBC4A6" opacity=".7"/>
+              <path d="M0 150Q50 118 100 142T200 130V200H0z" fill="#929F76"/>
+              <path d="M0 172Q60 148 120 168T200 160V200H0z" fill="#6D985E"/>
+              <rect x="96" y="96" width="9" height="52" rx="4" fill="#2C3822"/>
+              <circle cx="100" cy="82" r="30" fill="#6D985E"/>
+              <circle cx="82" cy="98" r="18" fill="#55804A"/>
+              <circle cx="120" cy="96" r="16" fill="#55804A"/>
+              <circle cx="104" cy="68" r="12" fill="#8FB57F"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sage section" data-screen="final" hidden>
+    <div class="wrap">
+      <h2 class="title section__head">Tu desempeño</h2>
+      <div class="final-stats">
+        <article class="card"><div class="stat-num" id="fScore">0</div><h3 class="card-title" style="margin-top:14px">Puntuación sobre 100</h3><p>Considera tus intentos y el tiempo, sin castigar los errores en exceso.</p></article>
+        <article class="card"><div class="stat-num" id="fPct">0%</div><h3 class="card-title" style="margin-top:14px">Conceptos encontrados</h3><p id="fPctText">Todos los conceptos de la actividad.</p></article>
+        <article class="card"><div class="stat-num" id="fTime">00:00</div><h3 class="card-title" style="margin-top:14px">Tiempo empleado</h3><p>Desde que comenzaste hasta el último concepto.</p></article>
+        <article class="card"><div class="stat-num" id="fWrong">0</div><h3 class="card-title" style="margin-top:14px">Intentos fallidos</h3><p>Cada combinación que no correspondía a un concepto.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== REPASO ===================== -->
+  <section class="sage section" data-screen="review" hidden>
+    <div class="wrap">
+      <div class="review-head">
+        <h2 class="title">Repasa los conceptos</h2>
+        <div class="btn-row">
+          <button class="btn btn--small" type="button" data-action="retry">Volver a intentar</button>
+          <button class="btn btn--small btn--ghost" type="button" data-action="final">Ver resultados</button>
+        </div>
+      </div>
+      <div class="grid-3" id="reviewList"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <b>Problemáticas ambientales en el mundo</b>
+    <span>Otra actividad: <a href="../index.html">Clasifica los residuos</a></span>
+  </div>
+</footer>
+
+<script src="../js/sopa.js"></script>
+</body>
+</html>

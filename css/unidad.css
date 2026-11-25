@@ -1,0 +1,226 @@
+/* ==========================================================
+   OVA: Página de contenido (video + lecturas)
+   Se carga DESPUÉS de styles.css y reutiliza sus variables.
+   ========================================================== */
+
+/* Reinicio de listas ordenadas: styles.css solo reinicia ul, dl y dd */
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* Introducción */
+.unit-intro {
+  padding-block: clamp(2rem, 5vw, 3.5rem) 1rem;
+}
+.unit-intro__title {
+  font-size: clamp(2rem, 4.2vw + 0.5rem, 3.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  animation: entrada-contenido 0.9s ease-out both;
+}
+.unit-intro__text { max-width: 40rem; }
+
+/* Ruta de aprendizaje (es una secuencia real: 1, 2, 3) */
+.path {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+.path__step {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1.1rem 0.5rem 0.5rem;
+  background-color: var(--salvia-claro);
+  border-radius: 999px;
+  font-family: var(--fuente-titulos);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.path__num {
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--oliva-medio);
+  color: var(--blanco);
+  font-weight: 600;
+}
+
+/* Bloques de contenido */
+.block { padding-block: clamp(2rem, 5vw, 3.5rem); }
+.block--texture {
+  background-color: var(--salvia);
+  background-image: var(--textura-salvia);
+}
+.block__head {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.block__head .section-title { margin-bottom: 0; }
+.block__num {
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: var(--oliva-profundo);
+  color: var(--crema);
+  font-family: var(--fuente-titulos);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* Video */
+.video {
+  padding: clamp(0.6rem, 1.5vw, 1rem);
+  background-color: var(--oliva-profundo);
+  border-radius: var(--radio);
+  box-shadow: 0 6px 0 var(--oliva-medio);
+}
+.video__frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: calc(var(--radio) - 0.4rem);
+  background-color: #000;
+}
+.video__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+.video__caption {
+  margin-top: 1rem;
+  max-width: 44rem;
+}
+.video__caption a {
+  color: var(--oliva-medio);
+  font-weight: 500;
+}
+
+/* Guía para ver el video */
+.watch-guide {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: var(--salvia-claro);
+  border-radius: var(--radio);
+}
+.watch-guide h3 { font-size: 1.2rem; font-weight: 600; margin-bottom: 0.75rem; }
+.watch-guide ul { display: grid; gap: 0.5rem; }
+.watch-guide li { padding-left: 1.25rem; position: relative; }
+.watch-guide li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--oliva-medio);
+}
+
+/* Lecturas */
+.readings {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  gap: 1.5rem;
+  align-items: start;
+}
+.reading {
+  padding: clamp(1.5rem, 3vw, 2rem);
+  background-color: var(--crema);
+  border-radius: var(--radio);
+}
+.reading__time {
+  display: inline-block;
+  margin-bottom: 0.75rem;
+  padding: 0.2rem 0.8rem;
+  background-color: var(--salvia-claro);
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+.reading__title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; }
+.reading p { max-width: 38rem; }
+.reading p + p { margin-top: 1rem; }
+.reading__key {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--salvia-claro);
+  border-left: 0.35rem solid var(--oliva-medio);
+  border-radius: 0 0.75rem 0.75rem 0;
+  font-weight: 500;
+}
+
+/* Reflexión (misma banda oscura que el objetivo de la portada) */
+.reflect {
+  padding-block: clamp(3rem, 8vw, 5rem);
+  background-color: var(--oliva-profundo);
+  border-top: 0.5rem solid var(--salvia);
+  color: var(--crema);
+}
+.reflect__inner { max-width: 56rem; }
+.reflect__heading {
+  margin-bottom: 1.5rem;
+  color: var(--salvia-claro);
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+.reflect__list {
+  display: grid;
+  gap: 1.25rem;
+  counter-reset: pregunta;
+}
+.reflect__list li {
+  position: relative;
+  padding-left: 3rem;
+  counter-increment: pregunta;
+  font-family: var(--fuente-titulos);
+  font-size: clamp(1.15rem, 1.6vw + 0.6rem, 1.5rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+.reflect__list li::before {
+  content: counter(pregunta);
+  position: absolute;
+  left: 0;
+  top: 0.1em;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background-color: var(--salvia);
+  color: var(--oliva-profundo);
+  font-size: 1rem;
+  font-weight: 700;
+}
+.reflect__actions { margin-top: 2.5rem; }
+.reflect .btn-primary {
+  background-color: var(--salvia-claro);
+  color: var(--oliva-profundo);
+  box-shadow: 0 5px 0 var(--salvia);
+}
+.reflect .btn-primary:hover { background-color: var(--blanco); box-shadow: 0 7px 0 var(--salvia-medio); }
+.reflect .btn-primary:focus-visible { outline-color: var(--salvia-claro); }
+
+a:focus-visible, .btn-primary:focus-visible {
+  outline: 4px solid var(--oliva-profundo);
+  outline-offset: 4px;
+}
+
+@media (max-width: 36rem) {
+  .readings { grid-template-columns: 1fr; }
+  .reflect .btn-primary { display: block; width: 100%; }
+}

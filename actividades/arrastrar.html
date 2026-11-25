@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Clasifica los residuos · Problemáticas ambientales en el mundo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/arrastrar.css">
+  <link rel="stylesheet" href="../css/navegacion.css">
+</head>
+<body>
+
+<nav class="ova-nav" aria-label="Navegación principal">
+  <a class="ova-nav__brand" href="../index.html">OVA Ambiental</a>
+  <div class="ova-nav__links">
+    <a href="../index.html">Inicio</a>
+    <a href="../unidad.html">Contenido</a>
+    <a href="../actividades/flashcards.html">Flashcards</a>
+    <a href="../actividades/sopa.html">Sopa de letras</a>
+    <a href="../actividades/arrastrar.html">Clasificación</a>
+    <a href="../actividades/huella.html">Huella ambiental</a>
+    <a href="../creditos.html">Créditos</a>
+  </div>
+</nav>
+
+<main>
+
+  <!-- ===================== PANTALLA INICIAL ===================== -->
+  <section class="hero" data-screen="intro">
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="display">Clasifica los residuos</h1>
+        <h2 class="subtitle">Cada residuo tiene su caneca.<br>Aprender a separarlos es el primer paso.</h2>
+        <p class="lead">Observa cada objeto, arrástralo hasta la caneca correcta y descubre por qué va allí. Construye tus propias conclusiones sobre cómo separar en la fuente desde Colombia.</p>
+        <div class="btn-row">
+          <button class="btn" type="button" data-action="start">Comenzar clasificación</button>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="stage">
+          <div class="stage__disc"></div>
+          <div class="stage__ring"></div>
+          <div class="stage__globe">
+            <span class="cloud cloud--a"></span>
+            <span class="cloud cloud--b"></span>
+            <div class="mini-bins" id="miniBins"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sage section" data-screen="intro">
+    <div class="wrap">
+      <h2 class="title section__head">Cómo funciona la actividad</h2>
+      <div class="grid-3">
+        <article class="card">
+          <div class="icon-dot">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M4 24C10 14 17 10 24 10s14 4 20 14c-6 10-13 14-20 14S10 34 4 24z" stroke="#BBC4A6" stroke-width="3.5" stroke-linejoin="round"/><circle cx="24" cy="24" r="6.5" fill="#F1F2E6"/></svg>
+          </div>
+          <h3 class="card-title">Observa</h3>
+          <p>Mira cada residuo y piensa de qué está hecho y en qué estado se encuentra.</p>
+        </article>
+        <article class="card">
+          <div class="icon-dot">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M24 6v26M14 22l10 10 10-10" stroke="#F1F2E6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="8" y="38" width="32" height="5" rx="2.5" fill="#BBC4A6"/></svg>
+          </div>
+          <h3 class="card-title">Arrastra</h3>
+          <p>Llévalo hasta la caneca que le corresponde. También puedes tocarlo y luego tocar la caneca.</p>
+        </article>
+        <article class="card">
+          <div class="icon-dot">
+            <svg viewBox="0 0 48 48" fill="none" aria-hidden="true"><path d="M10 38C8 22 18 10 38 8c1 20-9 30-24 31" fill="#BBC4A6"/><path d="M12 36L30 18" stroke="#2C3822" stroke-width="3" stroke-linecap="round"/></svg>
+          </div>
+          <h3 class="card-title">Aprende</h3>
+          <p>Cada respuesta trae una explicación para que entiendas por qué ese residuo va allí.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== PANTALLA DE CLASIFICACIÓN ===================== -->
+  <section class="sage game" data-screen="game" hidden>
+    <div class="wrap">
+      <div class="game__head">
+        <div>
+          <h2 class="title">Clasifica cada residuo</h2>
+          <p>Arrastra cada objeto hasta su caneca. Lee las pistas de cada una antes de decidir.</p>
+        </div>
+        <div class="stats" aria-live="off">
+          <span class="pill">Clasificados <b id="statDone">0/10</b></span>
+          <span class="pill">Intentos fallidos <b id="statErrors">0</b></span>
+        </div>
+      </div>
+
+      <div class="grid-4" id="bins"></div>
+
+      <div class="feedback" id="feedback" role="status" aria-live="polite">
+        <div class="feedback__icon" id="fbIcon"></div>
+        <div>
+          <h3 class="feedback__title" id="fbTitle"></h3>
+          <p class="feedback__text" id="fbText"></p>
+        </div>
+        <button class="btn btn--small" type="button" id="fbAction" data-action="results" hidden>Ver resultados</button>
+      </div>
+
+      <div class="grid-5" id="items"></div>
+    </div>
+  </section>
+
+  <!-- ===================== PANTALLA DE RESULTADOS ===================== -->
+  <section class="hero" data-screen="results" hidden>
+    <div class="wrap hero__inner">
+      <div class="hero__text">
+        <h1 class="display" id="resTitle">¡Buen trabajo!</h1>
+        <h2 class="subtitle" id="resSub"></h2>
+        <p class="lead" id="resText"></p>
+        <div class="btn-row">
+          <button class="btn" type="button" data-action="start">Jugar de nuevo</button>
+          <button class="btn btn--ghost" type="button" data-action="home">Volver al inicio</button>
+        </div>
+      </div>
+      <div class="hero__art" aria-hidden="true">
+        <div class="stage">
+          <div class="stage__disc"></div>
+          <div class="stage__ring"></div>
+          <div class="stage__globe">
+            <span class="cloud cloud--a"></span>
+            <span class="cloud cloud--b"></span>
+            <div style="text-align:center;position:relative">
+              <div class="score-num" id="resScore">0/10</div>
+              <div class="score-label">a la primera</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sage section" data-screen="results" hidden>
+    <div class="wrap">
+      <h2 class="title section__head">Tu resultado en detalle</h2>
+      <div class="grid-3" style="margin-bottom:clamp(40px,5vw,72px)">
+        <article class="card"><div class="stat-num" id="resFirst">0</div><h3 class="card-title" style="margin-top:14px">Aciertos a la primera</h3><p>Residuos que llevaste a su caneca sin equivocarte.</p></article>
+        <article class="card"><div class="stat-num" id="resErrors">0</div><h3 class="card-title" style="margin-top:14px">Intentos fallidos</h3><p>Cada error es una oportunidad para aprender algo nuevo.</p></article>
+        <article class="card"><div class="stat-num" id="resPct">0%</div><h3 class="card-title" style="margin-top:14px">Precisión</h3><p>Porcentaje de residuos clasificados bien al primer intento.</p></article>
+      </div>
+      <h2 class="title section__head">Para recordar</h2>
+      <div class="grid-4" id="recap"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <b>Problemáticas ambientales en el mundo</b>
+    <span>Separar en la fuente cuida el planeta, empezando por Colombia.</span>
+  </div>
+</footer>
+
+<script src="../js/arrastrar.js"></script>
+</body>
+</html>
